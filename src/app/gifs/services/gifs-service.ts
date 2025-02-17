@@ -1,7 +1,18 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({providedIn: 'root'})
-export class ServiceNameService {
+export class GifsService {
+
+    private _tagHistory: string[] = [];
+
     constructor() { }
+
+    get tagHistory() {
+        return [...this._tagHistory];
+    }
+
+    searchTag(tag: string) {
+        this._tagHistory.unshift(tag);
+    }
     
 }
