@@ -8,8 +8,17 @@ import { Component } from "@angular/core";
     <input type="text"
         class="form-control"
         placeholder="Buscar gifs..."
+        (keyup)="searchTag(newTag.value)"
+        #newTag
     >        
   `,
 })
 
-export class SearchBoxComponent { }
+export class SearchBoxComponent { 
+
+  searchTag( newTag: string ) {
+    console.log({newTag});
+
+  }
+
+}
