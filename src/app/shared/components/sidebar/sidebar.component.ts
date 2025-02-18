@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class SidebarComponent { 
 
-  constructor(public gifsService: GifsService) { }
+  constructor(private gifsService: GifsService) { }
 
   get searchTags(): string[] {
     return this.gifsService.tagHistory; // Asegúrate de que `tagsHistory` existe en `GifsService`
