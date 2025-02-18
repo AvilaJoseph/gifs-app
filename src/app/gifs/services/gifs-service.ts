@@ -13,6 +13,7 @@ export class GifsService {
 
     searchTag(tag: string) {
         this._tagHistory.unshift(tag);
+        console.log(this.tagHistory)
     }
     
 }

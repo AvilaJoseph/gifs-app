@@ -1,9 +1,23 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
+import { GifsService } from '../../../gifs/services/gifs-service';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'shared-sidebar',
-  imports: [],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.css',
+  styleUrls: ['./sidebar.component.css'],
+  imports: [CommonModule]
 })
-export class SidebarComponent { }
+export class SidebarComponent { 
+
+  constructor(public gifsService: GifsService) { }
+
+  get searchTags(): string[] {
+    return this.gifsService.tagHistory; // Asegúrate de que `tagsHistory` existe en `GifsService`
+  }
+
+  public searchTag(tag: string): void {
+    this.gifsService.searchTag(tag);
+  }
+}
