@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { GifsModule } from './gifs/gifs.module';
@@ -16,7 +17,9 @@ import { SidebarComponent } from "./shared/components/sidebar/sidebar.component"
     SharedModule,
     SidebarComponent
 ],
-  providers: [],
+  providers: [
+    provideHttpClient(withInterceptorsFromDi()) // Nueva forma recomendada de proveer el HttpClient
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
