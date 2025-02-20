@@ -1,0 +1,18 @@
+<div class="d-flex justify-content-center align-items-center">
+    
+    <img 
+    class="card-img-top animate__animated animate__fadeIn   " 
+    [src]="url" 
+    [alt]="alt" 
+    (load)="onLoad()"
+    [ngStyle]="{display: hasLoaded ? 'block' : 'none'}"
+    />
+
+    <img
+    *ngIf="!hasLoaded"
+    src="assets/tail-spin.svg"
+    height="35"
+    width="35"
+    class="mt-3"
+    />
+</div>

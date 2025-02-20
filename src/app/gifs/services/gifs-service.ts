@@ -22,7 +22,6 @@ export class GifsService {
 
     async searchTag(tag: string) {
         if (tag.trim().length === 0) return
-        this._tagHistory.unshift(tag);
 
         this.organizeTags(tag); // Evita duplicados y mantiene el historial ordenado
 

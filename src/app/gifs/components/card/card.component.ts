@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input, OnInit } from "@angular/core";
 import { Gif } from "../../interfaces/gifs.interfaces";
+import { LazyImageComponent } from "../../../shared/components/lazy-image/lazy-image.component";
 
 
 @Component({
@@ -8,6 +9,7 @@ import { Gif } from "../../interfaces/gifs.interfaces";
     templateUrl: "./card.component.html",
     imports: [
         CommonModule,
+        LazyImageComponent
     ]
 })
 
