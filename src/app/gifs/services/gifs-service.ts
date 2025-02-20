@@ -12,7 +12,7 @@ export class GifsService {
     private apiKey: string = environment.API_KEY_GIFS;
     private service_url: string = 'https://api.giphy.com/v1/gifs'
 
-    constructor(private http:HttpClient) { }
+    constructor(private http: HttpClient) { }
 
     get tagHistory() {
         return [...this._tagHistory];
@@ -22,27 +22,40 @@ export class GifsService {
         if (tag.trim().length === 0) return
         this._tagHistory.unshift(tag);
 
-        const params = new HttpParams()
-        .set('api_key', this.apiKey)
-        .set('limit', '10')
-        .set('q', tag)
+        this.organizeTags(tag); // Evita duplicados y mantiene el historial ordenado
 
-        this.http.get<SearchResponse>(`${this.service_url}/search`, {params})
+        const params = new HttpParams()
+            .set('api_key', this.apiKey)
+            .set('limit', '10')
+            .set('q', tag)
+
+        this.http.get<SearchResponse>(`${this.service_url}/search`, { params })
             .subscribe((res) => {
                 this.gifList = res.data;
                 console.log(res.data)
-        });
+            });
         console.log(this.tagHistory)
     }
-    
 
-     organizeTags(tag: string) {
+    private saveLocalStorage() {
+        localStorage.setItem('history', JSON.stringify(this._tagHistory));
+    }
+
+    private loadLocalStorage() {
+        if( !localStorage.getItem('history') ) return;
+
+        this._tagHistory = JSON.parse(localStorage.getItem('history')!);
+        const temporal = localStorage.getItem('history');
+    }
+
+    organizeTags(tag: string) {
         tag = tag.toLowerCase();
         if (this._tagHistory.includes(tag)) {
             this._tagHistory = this._tagHistory.filter(oldTag => oldTag !== tag);
         }
         this._tagHistory.unshift(tag);
-        this._tagHistory = this._tagHistory.splice(0, 10);
+        this._tagHistory = this._tagHistory.slice(0, 10);
+        this.saveLocalStorage()
     }
 
 }
