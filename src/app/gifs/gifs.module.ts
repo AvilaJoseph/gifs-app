@@ -14,12 +14,13 @@ import { CardListComponent } from './components/card-list/card-list.component';
     CommonModule,
     HomePageComponent,
     SearchBoxComponent,
-    CardListComponent
+    CardListComponent,
+
   ],
   exports: [
     HomePageComponent,
     SearchBoxComponent,
-    CardListComponent
+    CardListComponent,
     
   ]
 })

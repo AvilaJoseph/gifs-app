@@ -35,7 +35,6 @@ export class GifsService {
             .subscribe((res) => {
                 this.gifList = res.data;
             });
-
     }
 
     private saveLocalStorage() {
