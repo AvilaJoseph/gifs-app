@@ -21,5 +21,6 @@ export class SidebarComponent {
 
   public searchTag(tag: string): void {
     this.gifsService.searchTag(tag);
+    this.gifsService.organizeTags(tag);
   }
 }

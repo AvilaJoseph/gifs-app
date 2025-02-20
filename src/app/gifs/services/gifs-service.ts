@@ -36,8 +36,8 @@ export class GifsService {
     }
     
 
-    private organizeTags(tag: string) {
-        tag = tag.toUpperCase();
+     organizeTags(tag: string) {
+        tag = tag.toLowerCase();
         if (this._tagHistory.includes(tag)) {
             this._tagHistory = this._tagHistory.filter(oldTag => oldTag !== tag);
         }
